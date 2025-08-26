@@ -1,3 +1,4 @@
+```Python
 # =============================================================================
 # EMERGENCYFLOW: OPTIMIZING EMERGENCY RESPONSE TIME IN RWANDA
 # =============================================================================
@@ -6,7 +7,8 @@
 # ❓ Problem Statement: Emergency ambulances in Rwanda are often delayed due to 
 #    traffic congestion and poor route optimization, putting lives at risk.
 # =============================================================================
-
+```
+```Python
 # =============================================================================
 # STEP 1: INSTALL AND IMPORT REQUIRED LIBRARIES
 # =============================================================================
@@ -35,7 +37,7 @@ sns.set_palette("husl")
 
 print("✅ All libraries imported successfully!")
 print("🚀 Starting EmergencyFlow Analysis...")
-
+```
 # =============================================================================
 # STEP 2: LOAD AND EXPLORE THE DATASET
 # =============================================================================
@@ -1033,3 +1035,5 @@ print("\n🎉 CONGRATULATIONS! Your EmergencyFlow analysis is complete!")
 print("📋 Next Step: Import 'emergencyflow_powerbi_ready.csv' into Power BI")
 print("💡 Use the insights and recommendations to build your dashboard")
 print("\n🌟 Remember: This analysis could help save lives in Rwanda! 🇷🇼")
+
+```
