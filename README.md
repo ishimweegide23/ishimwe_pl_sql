@@ -1,119 +1,187 @@
-# AgeColorValidator
+# ⚽ Premier League Database Management System
 
-A simple **Java Servlet 5.0** web application built with **Eclipse IDE 2025-09** and deployed on **Apache Tomcat 10.1**. The project validates user input (first name, last name, age, and favorite color) and displays a personalized message.
+[![Oracle](https://img.shields.io/badge/Oracle-PL%2FSQL-red?style=for-the-badge&logo=oracle&logoColor=white)](https://www.oracle.com/)
+[![Database](https://img.shields.io/badge/Database-Relational-blue?style=for-the-badge&logo=database&logoColor=white)](https://github.com/ishimweegide23/ishimwe_pl_sql)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
-## 🛠️ Tools & Technologies Used
+## 📖 Project Overview
 
-* **Java 17+** (compatible with Jakarta Servlet 5.0)
-* **Eclipse IDE 2025-09**
-* **Apache Tomcat 10.1**
-* **Jakarta Servlet API 5.0**
-* **HTML & JSP** for UI and result rendering
-* **Git & GitHub** for version control
+This project implements a comprehensive **Football Database Management System** using Oracle PL/SQL. The database is designed to manage Premier League teams, players, matches, statistics, and standings with proper relational structure and data integrity.
 
-## 📂 Project Structure
+## 🏗️ Database Architecture
 
+### 📊 Entity Relationship Diagram
 ```
-AgeColorValidator/
- ├─ src/main/java/com/assignment/AgeColorServlet.java
- ├─ src/main/webapp/
- │   ├─ index.html
- │   ├─ result.jsp
- │   └─ WEB-INF/web.xml
- ├─ screenshots/ (screenshots of form and output)
- └─ README.md
+Teams (1) ←→ (N) Players
+Teams (1) ←→ (N) Matches (Home/Away)
+Players (1) ←→ (N) PlayerStats
+Teams (1) ←→ (1) Standings
 ```
 
-## 🚀 Features
+## 🗄️ Database Schema
 
-### 1. **Form (index.html)**
-   * First Name (required, must be ≥ 2 characters)
-   * Last Name (required, must be ≥ 2 characters)
-   * Age (numeric, ≥ 0)
-   * Favorite Color (dropdown: Red, Blue, Green, Yellow)
+### 🏆 Teams Table
+- **TeamID** (Primary Key)
+- **TeamName** - Club name
+- **Stadium** - Home stadium
+- **Coach/ManagerName** - Current manager
+- **FoundedYear** - Year the club was founded
 
-### 2. **Validation in Servlet**
-   * If name fields are empty or less than 2 letters → error message
-   * If age < 18 → `"Hello [FirstName] [LastName], you are still a minor."`
-   * If age ≥ 18 → `"Hello [FirstName] [LastName], you are adult."`
-   * Displays favorite color message
+### 👥 Players Table
+- **PlayerID** (Primary Key)
+- **PlayerName** - Player's full name
+- **Position** - Playing position
+- **Nationality** - Player's nationality
+- **DateOfBirth** - Birth date
+- **TeamID** (Foreign Key → Teams)
 
-### 3. **Result Display**
-   * The servlet forwards the response to `result.jsp` using `RequestDispatcher`.
+### ⚽ Matches Table
+- **MatchID** (Primary Key)
+- **HomeTeamID** (Foreign Key → Teams)
+- **AwayTeamID** (Foreign Key → Teams)
+- **MatchDate** - Date of the match
+- **HomeTeamGoals** - Goals scored by home team
+- **AwayTeamGoals** - Goals scored by away team
 
-## ⚙️ How to Run
+### 📈 PlayerStats Table
+- **StatID** (Primary Key)
+- **PlayerID** (Foreign Key → Players)
+- **MatchesPlayed** - Total matches played
+- **GoalsScored** - Total goals scored
+- **Assists** - Total assists
 
-### 1️⃣ Import Project into Eclipse
-1. Open **Eclipse IDE 2025-09**
-2. Go to: `File → Import → Existing Projects into Workspace`
-3. Select the project folder: `C:\Users\Hey\eclipse-workspace\AgeColorValidator`
+### 🏅 Standings Table
+- **TeamID** (Foreign Key → Teams)
+- **Points** - Total points earned
+- **Wins** - Number of wins
+- **Losses** - Number of losses
+- **Draws** - Number of draws
+- **GoalDifference** - Goal difference
 
-### 2️⃣ Configure Tomcat
-1. In Eclipse, open **Servers view**
-2. Add **Apache Tomcat v10.1**
-3. Set **Dynamic Web Module version = 5.0**
-4. Deploy the project to Tomcat
+## 🚀 Features Implemented
 
-### 3️⃣ Run Application
-1. Right-click the project → `Run As → Run on Server`
-2. Select **Tomcat 10.1**
-3. Eclipse will start Tomcat and deploy the app
-4. Open browser and visit: 👉 `http://localhost:8080/AgeColorValidator/`
+### ✅ Core Functionality
+- [x] **Table Creation** with proper constraints
+- [x] **Foreign Key Relationships** for data integrity
+- [x] **Data Insertion** with sample Premier League data
+- [x] **Table Alterations** (adding columns dynamically)
+- [x] **Data Updates** and modifications
+- [x] **Data Deletion** operations
+- [x] **Inner Joins** for related data retrieval
+- [x] **Left Joins** for comprehensive data views
+- [x] **Transaction Management** (COMMIT/ROLLBACK)
 
-### 4️⃣ Test Input
-* Enter **First Name, Last Name, Age, Favorite Color**
-* Click **Submit**
-* The servlet will validate and forward result to `result.jsp`
+### 🔍 Query Examples
+1. **Player-Team Relationships**: Display players with their respective teams
+2. **Team Rosters**: Show all teams with their players (including teams without players)
+3. **Match Results**: Track game outcomes and statistics
+4. **League Standings**: Monitor team performance and rankings
 
-## 📸 Screenshots & Explanations
+## 📋 Sample Data
 
-### 📝 index.html (Form Page)
+The database includes sample data for popular Premier League teams:
+- ⚪ **Liverpool** (Anfield) - Arne Slot
+- 🔵 **Manchester City** (Etihad Stadium) - Pep Guardiola
+- 🔵 **Chelsea** (Stamford Bridge) - Enzo Maresca
+- 🔴 **Arsenal** (Emirates Stadium) - Mikel Arteta
 
-![Index Page](screenshots/index.png)
+## 🛠️ Installation & Setup
 
-This is the main page where the user enters their **first name**, **last name**, **age**, and selects a **favorite color**. Clicking **Submit** sends the form data to `AgeColorServlet`.
+### Prerequisites
+- Oracle Database 11g or higher
+- SQL Developer or similar Oracle client
+- Basic understanding of PL/SQL
 
-### ⚙️ Servlet Processing
+### Setup Instructions
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/ishimweegide23/ishimwe_pl_sql.git
+   cd ishimwe_pl_sql
+   ```
 
-![Servlet Processing](screenshots/servlet-processing.png)
+2. **Connect to Oracle Database**
+   ```sql
+   -- Connect to your Oracle instance
+   sqlplus username/password@database
+   ```
 
-The form sends the data to **AgeColorServlet.java**, which processes and forwards it to `result.jsp` for display.
+3. **Execute the SQL Script**
+   ```sql
+   @PLSQL_WORK.sql
+   ```
 
-### 🖥️ result.jsp (Result Page)
+## 💻 Usage Examples
 
-![Result Page](screenshots/result.png)
+### Basic Queries
+```sql
+-- View all teams and their stadiums
+SELECT TeamName, Stadium, ManagerName 
+FROM Teams;
 
-This page displays the processed user information, showing their name, age, and selected color after the servlet validates the data.
+-- Get player information with team details
+SELECT p.PlayerName, p.Position, t.TeamName
+FROM Players p
+INNER JOIN Teams t ON p.TeamID = t.TeamID;
 
-### 🖼️ Additional Screenshots
-
-![Eclipse Workspace](screenshots/eclipse-workspace.png)
-*Eclipse workspace where the project was built and run.*
-
-![Initial Test](screenshots/initial-test.png)
-*Initial test of the AgeColorValidator form.*
-
-## 📌 GitHub Workflow
-
-```bash
-# Initialize git repo
-git init
-
-# Add remote
-git remote add origin https://github.com/ishimweegide23/AgeColorValidator.git
-
-# Stage and commit
-git add .
-git commit -m "Initial commit - AgeColorValidator project"
-
-# Push to GitHub
-git branch -M main
-git push -u origin main
+-- Check current league standings
+SELECT t.TeamName, s.Points, s.Wins, s.Draws, s.Losses
+FROM Teams t
+INNER JOIN Standings s ON t.TeamID = s.TeamID
+ORDER BY s.Points DESC;
 ```
 
-## 👥 Collaborators
+## 🔧 Advanced Operations
 
-* **Owner:** @ishimweegide23
-* **Collaborators Added:**
-   * `kardara` (Instructor)
-   * `dushimimanapatrick@gmail.com` (Teacher Patrick)
+### Transaction Management
+```sql
+-- Safe data modification
+BEGIN
+    UPDATE Teams SET ManagerName = 'New Manager' WHERE TeamID = 1;
+    -- Verify changes
+    SELECT * FROM Teams WHERE TeamID = 1;
+    -- Commit if satisfied
+    COMMIT;
+    -- Or rollback if needed
+    -- ROLLBACK;
+END;
+```
+
+## 📊 Database Statistics
+
+- **4 Core Tables** with proper relationships
+- **Sample Data** for 4 Premier League teams
+- **Foreign Key Constraints** ensuring data integrity
+- **Flexible Schema** supporting future expansions
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+
+## 📝 Future Enhancements
+
+- [ ] Add Seasons table for historical data
+- [ ] Implement Views for complex queries
+- [ ] Add Stored Procedures for common operations
+- [ ] Create Triggers for automatic data updates
+- [ ] Add Indexes for performance optimization
+- [ ] Implement User roles and permissions
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👨‍💻 Author
+
+**Ishimwe Egide**
+- GitHub: [@ishimweegide23](https://github.com/ishimweegide23)
+- Project: [PL/SQL Football Database](https://github.com/ishimweegide23/ishimwe_pl_sql)
+
+## 🙏 Acknowledgments
+
+- Oracle Corporation for PL/SQL documentation
+- Premier League for inspiration
+- Football community for the passion that drives this project
+
+---
+
+⭐ **Star this repository if you found it helpful!** ⭐
