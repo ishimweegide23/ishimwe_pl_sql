@@ -10,7 +10,7 @@ This project implements a comprehensive **Football Database Management System** 
 
 ## 🏗️ Database Architecture
 
-### 📊 Entity Relationship Diagram b
+### 📊 Entity Relationship Diagram 
 ```
 Teams (1) ←→ (N) Players
 Teams (1) ←→ (N) Matches (Home/Away)
